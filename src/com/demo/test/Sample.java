@@ -13,14 +13,17 @@ public class Sample {
 	public static void main(String[] args) {
 
 		ExecutorService service = Executors.newFixedThreadPool(10);
+		List<Integer> l = new ArrayList<>();
 		Future<StringBuilder> submit = service.submit(() -> {
 			Sample.h.add(1);
+			l.add(5);
 			System.out.println("Task 1 " + Thread.currentThread().getName());
 			return new StringBuilder().append("Hey ");
 		});
 
 		Future<StringBuilder> submit2 = service.submit(() -> {
 			h.add(2);
+			l.add(6);
 			System.out.println("Task 2 " + Thread.currentThread().getName());
 			return new StringBuilder().append("Hello");
 		});
@@ -33,6 +36,7 @@ public class Sample {
 		}
 		service.shutdown();
 		System.out.println(h);
+		System.out.println(l);
 		System.out.println(Thread.currentThread().getName());
 	}
 }
