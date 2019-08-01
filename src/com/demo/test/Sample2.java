@@ -1,46 +1,41 @@
 package com.demo.test;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class Sample2 {
 
 	public static void main(String[] args) {
 
+		System.out.println("Processors : " + Runtime.getRuntime().availableProcessors());
+
 		System.out.println("Main " + Thread.currentThread().getName());
 		ExecutorService service = Executors.newFixedThreadPool(5);
 
-		Future<String> submit2 = service.submit(() -> {
+		service.submit(() -> {
 			System.out.println("Task 1 " + Thread.currentThread().getName());
-			Thread.sleep(2000);
-			return "Task 1 response";
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Task 1 response " + Thread.currentThread().getName());
 		});
 
-		Future<String> submit = service.submit(() -> {
+		service.submit(() -> {
 			System.out.println("Task 2 " + Thread.currentThread().getName());
-			Thread.sleep(4000);
-			return "Task 2 response";
-		});
-
-		service.submit(() -> {
 			try {
-				System.out.println(submit2.get());
-			} catch (InterruptedException | ExecutionException e) {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("Task 2 response " + Thread.currentThread().getName());
 		});
 
-		service.submit(() -> {
-			try {
-				System.out.println(submit.get());
-			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
-			}
-		});
 		System.out.println("in " + Thread.currentThread().getName());
 		service.shutdown();
-
+		System.out.println("DONE " + Thread.currentThread().getName());
 	}
 }
