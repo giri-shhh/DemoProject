@@ -3,7 +3,7 @@ package com.demo.test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HackerRankPatternMatcher {
+public class PatternMatcher {
 
     public static void main(String[] args) {
         /*4 <h1>Nayeem loves counseling</h1>

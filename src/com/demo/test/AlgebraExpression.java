@@ -2,7 +2,7 @@ package com.demo.test;
 
 import java.util.Scanner;
 
-public class HackerRankAlgebraExpression {
+public class AlgebraExpression {
 	// Practice test online hackerrak
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);

@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class HackerRankNumberFormatProblem {
+public class NumberFormatProblem {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
