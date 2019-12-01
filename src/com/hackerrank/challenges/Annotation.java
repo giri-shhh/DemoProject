@@ -1,4 +1,4 @@
-package com.demo.test;
+package com.hackerrank.challenges;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

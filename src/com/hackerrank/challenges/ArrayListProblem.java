@@ -1,4 +1,4 @@
-package com.demo.test;
+package com.hackerrank.challenges;
 
 import java.util.List;
 import java.util.Scanner;
@@ -39,8 +39,8 @@ public class ArrayListProblem {
 
 	private static String getValueFromList(List<List<Integer>> values, String s) {
 		String[] split = s.split(" ");
-		Integer index = Integer.valueOf(split[1]);
-		List<Integer> list = values.get(Integer.valueOf(split[0]) - 1);
+		int index = Integer.parseInt(split[1]);
+		List<Integer> list = values.get(Integer.parseInt(split[0]) - 1);
 		if (index >= list.size())
 			return "ERROR!";
 		return list.get(index).toString();

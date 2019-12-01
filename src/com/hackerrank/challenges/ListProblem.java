@@ -1,4 +1,4 @@
-package com.demo.test;
+package com.hackerrank.challenges;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +20,7 @@ public class ListProblem {
 				if ("INSERT".equalsIgnoreCase(nextLine2)) {
 					String nextLine3 = scan.nextLine();
 					String[] split2 = nextLine3.split(" ");
-					asList.add(Integer.valueOf(split2[0]), split2[1]);
+					asList.add(Integer.parseInt(split2[0]), split2[1]);
 				} else if ("DELETE".equalsIgnoreCase(nextLine2)) {
 					int nextInt3 = scan.nextInt();
 					if (scan.hasNextLine())
@@ -28,7 +28,7 @@ public class ListProblem {
 					asList.remove(nextInt3);
 				}
 			}
-			System.out.println(asList.stream().collect(Collectors.joining(" ")));
+			System.out.println(String.join(" ", asList));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

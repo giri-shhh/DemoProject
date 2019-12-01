@@ -1,16 +1,18 @@
-package com.demo.test;
+package com.hackerrank.challenges;
+
+import org.jetbrains.annotations.Contract;
 
 import java.util.HashMap;
 import java.util.Map;
 
 class Employee implements Comparable<Employee> {
 
-	public Employee() {
+	Employee() {
 	}
 
 	@Override
 	public boolean equals(Object arg0) {
-		return true;
+		return super.equals(arg0);
 	}
 
 	@Override
@@ -54,9 +56,6 @@ public class ObjectClassMethodsOverride {
 
 		System.out.println(map.size());
 		System.out.println(map.get(e2));
-		e1 = null;
-		e2 = null;
-		e3 = null;
 		System.gc();
 	}
 

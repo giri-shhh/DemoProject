@@ -1,4 +1,4 @@
-package com.demo.test;
+package com.hackerrank.challenges;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
