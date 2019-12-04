@@ -1,7 +1,5 @@
 package com.hackerrank.challenges;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.HashMap;
 import java.util.Map;
 
