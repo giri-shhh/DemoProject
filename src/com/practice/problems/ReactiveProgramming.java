@@ -1,7 +1,9 @@
 package com.practice.problems;
 
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -9,33 +11,38 @@ import java.util.List;
 
 public class ReactiveProgramming {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         List<String> symbols = Arrays.asList("GOOGLE", "APPLE", "MICROSOFT", "INTEL");
 
         Observable<StockInfo> value = StockExchange.getStockInfo(symbols);
 
         System.out.println("got observable");
 
-        value.subscribe(new Subscriber<StockInfo>() {
-            @Override
-            public void onCompleted() {
-                System.out.println("DONE");
-            }
+        value.subscribeOn(Schedulers.io()).subscribe(x -> {
+                    System.out.println("First " + x);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                },
+                throwable -> System.out.println("oops: " + throwable),
+                () -> System.out.println("DONE")
+        );
 
-            @Override
-            public void onError(Throwable throwable) {
-                System.out.println("oops: " + throwable);
-            }
+        value.skip(20).subscribeOn(Schedulers.io()).subscribe(x -> {
+                    System.out.println("Second "+ x);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                },
+                throwable -> System.out.println("oops: " + throwable),
+                () -> System.out.println("DONE")
+        );
 
-            @Override
-            public void onNext(StockInfo stockInfo) {
-                System.out.println(stockInfo);
-                if (stockInfo.getName().contains("I")) {
-                    System.out.println("Thanks no more data");
-                    unsubscribe();
-                }
-            }
-        });
+        Thread.sleep(30000);
     }
 }
 
@@ -50,6 +57,11 @@ class StockExchange {
                     .filter(data -> !subscriber.isUnsubscribed())
                     .map(StockFetcher::fetch)
                     .forEach(subscriber::onNext);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
@@ -61,10 +73,6 @@ class StockInfo {
     public StockInfo(String name, BigDecimal value) {
         this.name = name;
         this.value = value;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
