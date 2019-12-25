@@ -1,13 +1,12 @@
 package com.practice.problems;
 
-import rx.Observable;
-import rx.Scheduler;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 public class ReactiveProgramming {
 
