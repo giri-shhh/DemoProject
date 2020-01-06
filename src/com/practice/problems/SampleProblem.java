@@ -18,7 +18,6 @@ public class SampleProblem {
 		List<String> words = Arrays.asList(l1.split(","));
 
 		int[][] array = new int[words.size()][words.size()];
-
 		splitValues(l2, array, words);
 		splitValues(l3, array, words);
 		splitValues(l4, array, words);
