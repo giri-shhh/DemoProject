@@ -26,8 +26,7 @@ public class ReactiveProgramming {
                     }
                 },
                 throwable -> System.out.println("oops: " + throwable),
-                () -> System.out.println("DONE")
-        )\;
+                () -> System.out.println("DONE"));
 
         value.skip(20).subscribeOn(Schedulers.io()).subscribe(x -> {
                     System.out.println("Second "+ x);
