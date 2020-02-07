@@ -13,6 +13,20 @@ public class Test {
 
         List<Future<Integer>> submit = executorService.invokeAll(List.of(hello, hello1, hello2));
 
+        Future<String> submit1 = executorService.submit(Test::print);
+
+        if(submit1.isDone()) {
+            System.out.println("Done");
+            submit1 = Future
+        } else {
+            System.out.println("Not done");
+        }
+
+        String s = submit1.get();
+
+        System.out.println("s1 = " + s);
+        System.out.println("s2 = " + submit1.get());
+
         new Thread(()-> {
             for (Future<Integer> future : submit) {
                 Integer integer = null;
@@ -31,6 +45,11 @@ public class Test {
         new Thread(new Hello2()).start();
         executorService.shutdown();
         System.out.println("in main");
+    }
+
+    private static String print() {
+        System.out.println("Hello");
+        return "Hell";
     }
 }
 
